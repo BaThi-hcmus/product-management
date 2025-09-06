@@ -5,9 +5,9 @@ const session = require("express-session")
 const bodyParser = require('body-parser')
 var methodOverride = require('method-override')
 const app = express()
-const routeClient = require("./routes/client/index-route.js")
-const routeAdmin = require("./routes/admin/index-route.js")
-const database = require("./config/connect-database.js")
+const routeClient = require(`${__dirname}/routes/client/index-route.js`)
+const routeAdmin = require(`${__dirname}/routes/admin/index-route.js`)
+const database = require(`${__dirname}/config/connect-database.js`)
 require("dotenv").config()
 const port = process.env.PORT
 
