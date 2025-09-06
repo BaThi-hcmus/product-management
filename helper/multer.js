@@ -3,7 +3,7 @@ const multer  = require('multer');
 module.exports = () => {
     const storage = multer.diskStorage({
         destination: function (req, file, cb) {
-            cb(null, './public/admin/uploads/')
+            cb(null, `${__dirname}/public/admin/uploads/`)
         },
         filename: function (req, file, cb) {
             const uniqueSuffix = Date.now()
