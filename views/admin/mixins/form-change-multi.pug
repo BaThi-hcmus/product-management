@@ -1,0 +1,21 @@
+mixin formChangeMulti(path)
+  form#form-bulk-status(action=path method="POST")
+    .bulk-status-container
+      select(name="status" required)
+        option(disabled selected) --Chọn hành động--
+        option(value="active") Hoạt động
+        option(value="inactive") Dừng hoạt động
+        option(value="deleted") Xóa tấc cả
+        option(value="position") Cập nhật vị trí
+      input(
+        type="text"
+        name="ids"
+        class="input-data hidden-input"
+      )
+      input(
+        type="text"
+        name="positions"
+        position-input
+        class="hidden-input"
+      )
+      button.btn-apply(type="submit") Áp dụng

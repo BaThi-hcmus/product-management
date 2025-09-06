@@ -1,0 +1,21 @@
+.section-head {
+    margin-top: 5px; /* để không bị header che */
+    margin-bottom: 20px;
+    padding: 20px;
+    background: #a29bfe;  /* tông tím nhạt hợp với header */
+    color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.page-title {
+    margin: 0;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.page-subtitle {
+    margin: 5px 0 0 0;
+    font-size: 16px;
+    opacity: 0.9;
+}

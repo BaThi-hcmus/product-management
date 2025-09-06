@@ -1,0 +1,52 @@
+extends ../../layouts/default.pug 
+include ../../mixins/box-head.pug
+
+block main 
+  .product-detail
+    +headTitle(product.title)
+
+    if (product.title) 
+      .product-field#product-title 
+        span.label Tên sản phẩm:
+        span.value #{product.title} 
+
+    if (product.description)
+      .product-field#product-description
+        span.label Mô tả:
+        span.value #{product.description}
+
+    if (product.price) 
+      .product-field#product-price
+        span.label Giá:
+        span.value #{product.price} VNĐ
+
+    if (product.discountPercentage)
+      .product-field#product-discount
+        span.label Giảm giá:
+        span.value #{product.discountPercentage}%
+
+    if (product.stock) 
+      .product-field#product-stock
+        span.label Số lượng:
+        span.value #{product.stock}
+
+    if (product.thumbnail) 
+      .product-field#product-thumbnail
+        span.label Hình ảnh sản phẩm:
+        img.product-image(src=product.thumbnail alt="your image")
+
+    if (product.position) 
+      .product-field#product-position
+        span.label Vị trí:
+        span.value #{product.position}
+
+    if (product.status) 
+      .product-field#product-status
+        span.label Trạng thái:
+        if (product.status == "active")
+          span.value.active Hoạt động 
+        else 
+          span.value.inactive Dừng hoạt động 
+
+    //- .product-actions
+    //-   a.btn-edit(href=`/admin/products/edit/${product.id}`) Chỉnh sửa

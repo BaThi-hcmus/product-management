@@ -1,0 +1,22 @@
+mixin pagination(pagination)
+  ul.pagination
+    if (pagination.currentPage > 1)
+        li.prev
+            a(
+                href="#" 
+                class = `pageNumber`
+                button-pagination = pagination.currentPage-1
+            ) Trang trước
+    - for (var i = 1; i <= pagination.totalPage; i++)
+        li(
+            class=`pageNumber ${pagination.currentPage == i ? "active" : ""}`
+            button-pagination=i
+          )
+            a(href="#") #{i}
+    if (pagination.currentPage < pagination.totalPage)
+        li.next
+            a(
+                href="#"
+                class = `pageNumber`
+                button-pagination = pagination.currentPage + 1
+            ) Kế tiếp

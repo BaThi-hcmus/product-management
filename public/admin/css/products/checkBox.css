@@ -1,0 +1,69 @@
+/* checkbox */
+.check-item,
+#check-all {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+/* container cho button hành động */
+.action-container {
+  margin: 10px 20px;
+}
+
+/* nút thay đổi trạng thái */
+.btn-change-status {
+  background: #17a2b8;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.btn-change-status:hover {
+  background: #138496;
+}
+
+.bulk-status-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 15px 0;
+}
+
+.bulk-status-container select,
+.bulk-status-container input {
+  padding: 6px 12px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.bulk-status-container select:focus,
+.bulk-status-container input:focus {
+  border-color: #80bdff;
+  outline: none;
+  box-shadow: 0 0 0 0.1rem rgba(0, 123, 255, 0.25);
+}
+
+.bulk-status-container input {
+  width: 250px;
+}
+
+.bulk-status-container .btn-apply {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 6px 16px;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.bulk-status-container .btn-apply:hover {
+  background-color: #0056b3;
+}

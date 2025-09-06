@@ -1,0 +1,45 @@
+.thumbnail-wrapper {
+  margin-top: 10px;
+}
+
+.hidden-button {
+  display: none !important;
+}
+
+.preview-box {
+  position: relative;
+  display: inline-block;
+  margin-top: 10px;
+  max-width: 200px;
+}
+
+.preview-box img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.remove-btn {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  line-height: 20px;
+  text-align: center;
+  padding: 0;
+}
+
+.remove-btn:hover {
+  background: rgba(255, 0, 0, 0.8);
+}

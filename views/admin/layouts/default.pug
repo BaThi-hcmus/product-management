@@ -1,0 +1,32 @@
+doctype html 
+html 
+  head 
+    title #{pageTitle}
+    link(rel="stylesheet", href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css")
+
+    link(rel="stylesheet", href="/admin/css/box-head.css")
+    link(rel="stylesheet", href="/admin/css/header.css")
+    link(rel="stylesheet", href="/admin/css/main-content.css")
+    link(rel="stylesheet", href="/admin/css/sider.css")
+    link(rel="stylesheet", href="/admin/css/products/checkBox.css")
+    link(rel="stylesheet", href="/admin/css/products/filter.css")
+    link(rel="stylesheet", href="/admin/css/products/find.css")
+    link(rel="stylesheet", href="/admin/css/products/list-product.css")
+    link(rel="stylesheet", href="/admin/css/products/message.css")
+    link(rel="stylesheet", href="/admin/css/products/pagination.css")
+    link(rel="stylesheet", href="/admin/css/products/create-product.css")
+    link(rel="stylesheet", href="/admin/css/create-product/create-form.css")
+    link(rel="stylesheet", href="/admin/css/create-product/preview-image.css")
+    link(rel="stylesheet", href="/admin/css/detail-product/detail.css")
+
+  body 
+    
+    include ../partials/header.pug
+    include ../partials/sider.pug
+    .main-content
+      block main 
+    script(src="/admin/js/script.js")
+    script(src="https://code.jquery.com/jquery-3.5.1.slim.min.js")
+    script(src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js")
+    script(src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js")
+    

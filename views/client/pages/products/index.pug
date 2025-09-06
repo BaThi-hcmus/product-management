@@ -1,0 +1,17 @@
+extends ../../layouts/default.pug 
+include ../../mixins/box-head.pug
+
+block main 
+  +headTitle("Trang sản phẩm")
+  .product-list
+        each product in products
+            .product-card
+              a(href=`/products/${product.slug}`)
+                .product-thumb
+                    img(src=product.thumbnail, alt=product.title)
+                .product-info
+                    h2.product-title= product.title
+                    .product-pricing
+                        span.price-discounted #{(product.price * (1 - product.discountPercentage/100)).toFixed(0)}$
+                        span.price-original #{product.price}$
+                        span.price-off -#{product.discountPercentage}%

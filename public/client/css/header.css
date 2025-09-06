@@ -1,0 +1,34 @@
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #6c5ce7;
+    color: white;
+    padding: 15px 20px;
+    z-index: 1000; /* Đảm bảo nổi trên */
+}
+
+.navbar {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.nav-list {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-item a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.nav-item a:hover {
+    text-decoration: underline;
+}

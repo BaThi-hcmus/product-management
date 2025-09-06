@@ -1,0 +1,9 @@
+/* main-content.css */
+.main-content {
+    margin-top: 60px;     /* khoảng cách bằng chiều cao header */
+    margin-left: 200px;   /* khoảng cách bằng chiều rộng sider */
+    padding: 20px;        /* tạo khoảng trống bên trong nội dung */
+    background-color: #f8f9fa; /* nền nhạt dễ nhìn */
+    min-height: calc(100vh - 60px); /* đảm bảo full chiều cao màn hình trừ header */
+    box-sizing: border-box;
+}

@@ -1,0 +1,121 @@
+extends ../../layouts/default.pug 
+include ../../mixins/box-head.pug 
+include ../../mixins/alert.pug 
+
+block main 
+  +alert_error(5000)
+  +alert(5000)
+  +headTitle("Chỉnh sửa sản phẩm")
+  form(
+    class="form-create-product"
+    method="POST"
+    action=`/admin/products/edit/${product.id}?_method=PATCH`
+    enctype="multipart/form-data"
+    )
+      div(id = "title-product")
+        label(for="title") Tên sản phẩm 
+        br
+        input(
+          id = "title"
+          name = "title"
+          type = "text"
+          value=product.title
+        )
+      div(id = "discription-product") 
+        label(for="description") Mô tả sản phẩm 
+        br
+        textarea(
+            id="description"
+            name = "description"
+            type = "text"
+            rows = "10"
+        ) #{product.description}
+      div(id = "price-product")
+        label(for = "price") Giá
+        br
+        input(
+            id="price"
+            name = "price"
+            type = "number"
+            min="0"
+            value=product.price
+        )
+      div(id="discountPercentage-product")
+        label(for = "discountPercentage") Giảm giá
+        br 
+        input(
+            id = "discountPercentage"
+            name = "discountPercentage"
+            type = "number"
+            min = "0"
+            value=product.discountPercentage
+        )
+      div(id = "stock-product")
+        label(for = "stock") Số lượng
+        br 
+        input(
+            id = "stock"
+            name = "stock"
+            type = "number"
+            min = "0"
+            value=product.stock
+        )
+    
+      div(id="thumbnail-product" class="thumbnail-wrapper")
+        label(for="thumbnail") Hình ảnh
+        br 
+        input(
+            id="thumbnail"
+            name="thumbnail"
+            type="file"
+            class="form-control-file"
+            accept="image/*"
+        )
+
+        //- Preview box
+        div(class="preview-box")
+            img(
+                id="upload-image"
+                src=product.thumbnail
+            )
+            button(
+                type="button"
+                id="remove-preview"
+                class="remove-btn hidden-button"
+            ) ✕
+
+      div(id = "position-product")
+        label(for = "position") Vị trí 
+        br 
+        input(
+            id = "position"
+            name = "position"
+            type = "number"
+            placeholder = "tự động tăng"
+            value=product.position
+        )
+      div(id="status-product")
+        label Trạng thái 
+        br 
+        input(
+            id="active"
+            name = "status"
+            type = "radio"
+            value = "active"
+            checked=(product.status=="active" ? true : false)
+        )
+        label(for="active") Hoạt động
+        br
+        br
+        input(
+            id="inactive"
+            name = "status"
+            type = "radio"
+            value = "inactive"
+            checked=(product.status=="inactive" ? true : false)
+        )
+        label Dừng hoạt động 
+        br 
+      div(id="submit-product")
+        input(type="submit" value="Cập nhật")
+  script(src="/admin/js/product.js")

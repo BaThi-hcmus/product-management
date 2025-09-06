@@ -1,0 +1,12 @@
+/* Tạo khoảng trống tránh bị header & footer che */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.main-content {
+    padding: 80px 20px 60px 20px; 
+    /* 80px = chiều cao header, 60px = chiều cao footer */
+    min-height: 100vh;
+    background: #f1f2f6;
+}

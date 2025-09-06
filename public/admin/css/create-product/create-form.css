@@ -1,0 +1,99 @@
+/* Reset cơ bản */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+/* Form tổng */
+.form-create-product {
+  max-width: 500px;
+  margin: 40px auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background: #f9f9f9;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+/* Mỗi nhóm input */
+.form-create-product div {
+  margin-bottom: 16px;
+}
+
+/* Label */
+.form-create-product label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Input */
+.form-create-product input[type="text"],
+.form-create-product input[type="number"],
+.form-create-product input[type="email"],
+.form-create-product input[type="password"],
+.form-create-product textarea,
+.form-create-product select {
+  width: 100%;             /* không tràn ra ngoài */
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  background: #fff;
+  transition: border-color 0.2s;
+}
+
+.form-create-product input:focus,
+.form-create-product textarea:focus,
+.form-create-product select:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* Nút submit */
+.form-create-product button {
+  display: inline-block;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 6px;
+  background: #007bff;
+  color: #fff;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.form-create-product button:hover {
+  background: #0056b3;
+}
+
+/* Khối submit */
+#submit-product {
+  text-align: center;      /* căn giữa nút */
+  margin-top: 20px;
+}
+
+/* Nút submit */
+#submit-product input[type="submit"] {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  background: #28a745;      /* xanh lá */
+  color: #fff;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+}
+
+/* Hiệu ứng hover & click */
+#submit-product input[type="submit"]:hover {
+  background: #218838;
+}
+
+#submit-product input[type="submit"]:active {
+  transform: scale(0.97);
+}
