@@ -3,7 +3,6 @@ const multer  = require('multer');
 const express = require("express")
 //const storage = require("../../helper/multer.js")
 //const upload = multer({ storage: storage() })
-const upload = multer()
 const cloudinary = require('cloudinary').v2
 const streamifier = require('streamifier')
 
@@ -12,6 +11,8 @@ cloudinary.config({
   api_key: '447859212893887', 
   api_secret: '447859212893887'
 });
+
+const upload = multer()
 
 const routes = express.Router()
 const product_validate = require("../../validate/admin/product.js")
