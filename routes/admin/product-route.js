@@ -79,6 +79,7 @@ routes.post(
     }
 
     upload(req);
+    next();
 },
     product_validate.createPost,
     product_controller.createPost)
