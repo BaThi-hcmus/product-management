@@ -1,7 +1,7 @@
 const product_controller = require("../../controllers/admin/product-controller.js")
 const multer  = require('multer');
 const express = require("express")
-const storage = require("../../helper/multer.js")
+//const storage = require("../../helper/multer.js")
 //const upload = multer({ storage: storage() })
 const upload = multer()
 const cloudinary = require('cloudinary').v2
@@ -31,29 +31,62 @@ routes.get("/create", product_controller.create)
 routes.post(
     "/create",
     upload.single('thumbnail'),
-    function (req, res, next) {
-    let streamUpload = (req) => {
-        return new Promise((resolve, reject) => {
-            let stream = cloudinary.uploader.upload_stream(
-              (error, result) => {
-                if (result) {
-                  resolve(result);
-                } else {
-                  reject(error);
-                }
-              }
-            );
+//     function (req, res, next) {
+//     let streamUpload = (req) => {
+//         return new Promise((resolve, reject) => {
+//             let stream = cloudinary.uploader.upload_stream(
+//               (error, result) => {
+//                 if (result) {
+//                   resolve(result);
+//                 } else {
+//                   reject(error);
+//                 }
+//               }
+//             );
 
-          streamifier.createReadStream(req.file.buffer).pipe(stream);
-        });
+//           streamifier.createReadStream(req.file.buffer).pipe(stream);
+//         });
+//     };
+
+//     async function upload(req) {
+//         let result = await streamUpload(req);
+//         console.log(result);
+//     }
+
+//     upload(req);
+// },
+    async function uploadMiddleware(req, res, next) {
+  if (!req.file) {
+    return next(); // không có file thì bỏ qua
+  }
+
+  try {
+    const streamUpload = (req) => {
+      return new Promise((resolve, reject) => {
+        let stream = cloudinary.uploader.upload_stream(
+          (error, result) => {
+            if (result) {
+              resolve(result);
+            } else {
+              reject(error);
+            }
+          }
+        );
+        streamifier.createReadStream(req.file.buffer).pipe(stream);
+      });
     };
 
-    async function upload(req) {
-        let result = await streamUpload(req);
-        console.log(result);
-    }
+    const result = await streamUpload(req);
+    console.log("Upload thành công:", result.secure_url);
 
-    upload(req);
+    // Gắn url vào body để controller xử lý
+    req.body.thumbnail = result.secure_url;
+
+    next(); // báo cho Express đi tiếp
+  } catch (err) {
+    console.error("Lỗi upload:", err);
+    res.status(500).send("Upload ảnh thất bại");
+  }
 },
     product_validate.createPost,
     product_controller.createPost)
