@@ -56,39 +56,30 @@ routes.post(
 
 //     upload(req);
 // },
-    // middleware upload
-async function uploadMiddleware(req, res, next) {
-  if (!req.file) {
-    return next(); // Không có file thì bỏ qua
-  }
+    function (req, res, next) {
+    let streamUpload = (req) => {
+        return new Promise((resolve, reject) => {
+            let stream = cloudinary.uploader.upload_stream(
+              (error, result) => {
+                if (result) {
+                  resolve(result);
+                } else {
+                  reject(error);
+                }
+              }
+            );
 
-  try {
-    const streamUpload = (fileBuffer) => {
-      return new Promise((resolve, reject) => {
-        const stream = cloudinary.uploader.upload_stream(
-          { folder: "products" }, // có thể chỉ định folder
-          (error, result) => {
-            if (result) resolve(result);
-            else reject(error);
-          }
-        );
-        streamifier.createReadStream(fileBuffer).pipe(stream);
-      });
+          streamifier.createReadStream(req.file.buffer).pipe(stream);
+        });
     };
 
-    // CHÚ Ý: phải await đúng
-    const result = await streamUpload(req.file.buffer);
+    async function upload(req) {
+        let result = await streamUpload(req);
+        console.log(result);
+    }
 
-    console.log("Upload thành công:", result.secure_url);
-
-    req.body.thumbnail = result.secure_url; // gắn url vào body
-    next();
-  } catch (err) {
-    console.error("Lỗi upload:", err);
-    return res.status(500).json({ error: "Upload ảnh thất bại" });
-  }
-}
-,
+    upload(req);
+},
     product_validate.createPost,
     product_controller.createPost)
 
