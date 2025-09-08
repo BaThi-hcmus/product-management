@@ -33,29 +33,35 @@ routes.post(
     "/create",
     upload.single('thumbnail'),
     function (req, res, next) {
-    let streamUpload = (req) => {
-        return new Promise((resolve, reject) => {
-            let stream = cloudinary.uploader.upload_stream(
-              (error, result) => {
-                if (result) {
-                  resolve(result);
-                } else {
-                  reject(error);
-                }
-              }
-            );
+        if (req.file) {
+            let streamUpload = (req) => {
+                return new Promise((resolve, reject) => {
+                    let stream = cloudinary.uploader.upload_stream(
+                        (error, result) => {
+                            if (result) {
+                            resolve(result);
+                            } else {
+                            reject(error);
+                            }
+                        }
+                    );
 
-          streamifier.createReadStream(req.file.buffer).pipe(stream);
-        });
-    };
+                streamifier.createReadStream(req.file.buffer).pipe(stream);
+                });
+            };
 
-    async function upload(req) {
-        let result = await streamUpload(req);
-        console.log(result);
-    }
+            async function upload(req) {
+                let result = await streamUpload(req);
+                req.body[req.file.fieldname] = result.secure_url; 
+                console.log(result);
+                next();
+            }
 
-    upload(req);
-},
+            upload(req);
+        } else {
+            next();
+        }
+    },
     product_validate.createPost,
     product_controller.createPost)
 
