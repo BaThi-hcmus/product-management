@@ -29,69 +29,69 @@ routes.delete("/delete-product/:id", product_controller.deleteProduct)
 routes.get("/create", product_controller.create)
 
 
-// routes.post(
-//     "/create",
-//     upload.single('thumbnail'),
-//     function (req, res, next) {
-//     let streamUpload = (req) => {
-//         return new Promise((resolve, reject) => {
-//             let stream = cloudinary.uploader.upload_stream(
-//               (error, result) => {
-//                 if (result) {
-//                   resolve(result);
-//                 } else {
-//                   reject(error);
-//                 }
-//               }
-//             );
-
-//           streamifier.createReadStream(req.file.buffer).pipe(stream);
-//         });
-//     };
-
-//     async function upload(req) {
-//         let result = await streamUpload(req);
-//         console.log(result);
-//     }
-
-//     upload(req);
-// },
-//     product_validate.createPost,
-//     product_controller.createPost)
-
 routes.post(
-  "/create",
-  upload.single("thumbnail"),
-  async function (req, res, next) {
-    if (!req.file) return next();
-
-    try {
-      const streamUpload = (buffer) => {
+    "/create",
+    upload.single('thumbnail'),
+    function (req, res, next) {
+    let streamUpload = (req) => {
         return new Promise((resolve, reject) => {
-          let stream = cloudinary.uploader.upload_stream(
-            { folder: "products" }, // optional
-            (error, result) => {
-              if (result) resolve(result);
-              else reject(error);
-            }
-          );
-          streamifier.createReadStream(buffer).pipe(stream);
+            let stream = cloudinary.uploader.upload_stream(
+              (error, result) => {
+                if (result) {
+                  resolve(result);
+                } else {
+                  reject(error);
+                }
+              }
+            );
+
+          streamifier.createReadStream(req.file.buffer).pipe(stream);
         });
-      };
+    };
 
-      const result = await streamUpload(req.file.buffer);
-      console.log("Upload thành công:", result.secure_url);
-
-      req.body.thumbnail = result.secure_url; // Gắn vào body cho controller
-      next();
-    } catch (err) {
-      console.error("Lỗi upload:", err);
-      res.status(500).send("Upload ảnh thất bại");
+    async function upload(req) {
+        let result = await streamUpload(req);
+        console.log(result);
     }
-  },
-  product_validate.createPost,
-  product_controller.createPost
-);
+
+    upload(req);
+},
+    product_validate.createPost,
+    product_controller.createPost)
+
+// routes.post(
+//   "/create",
+//   upload.single("thumbnail"),
+//   async function (req, res, next) {
+//     if (!req.file) return next();
+
+//     try {
+//       const streamUpload = (buffer) => {
+//         return new Promise((resolve, reject) => {
+//           let stream = cloudinary.uploader.upload_stream(
+//             { folder: "products" }, // optional
+//             (error, result) => {
+//               if (result) resolve(result);
+//               else reject(error);
+//             }
+//           );
+//           streamifier.createReadStream(buffer).pipe(stream);
+//         });
+//       };
+
+//       const result = await streamUpload(req.file.buffer);
+//       console.log("Upload thành công:", result.secure_url);
+
+//       req.body.thumbnail = result.secure_url; // Gắn vào body cho controller
+//       next();
+//     } catch (err) {
+//       console.error("Lỗi upload:", err);
+//       res.status(500).send("Upload ảnh thất bại");
+//     }
+//   },
+//   product_validate.createPost,
+//   product_controller.createPost
+// );
 
 
 routes.get("/edit/:id", product_controller.edit)
